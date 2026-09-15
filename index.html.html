@@ -1,0 +1,4067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>IELTS Reading Practice Test</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: #222;
+
+    background: #f3f4f6;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+
+    --blue: #1f4e79;
+
+    --blue-dark: #173a5c;
+
+    --blue-light: #edf4fb;
+
+    --blue-border: #b9cde0;
+
+    --border: #d7dce1;
+
+    --light: #f7f8fa;
+
+    --green: #198754;
+
+    --green-light: #e9f7ef;
+
+    --red: #dc3545;
+
+    --red-light: #fff0f1;
+
+    --orange: #f59e0b;
+
+    --text: #222;
+
+    --muted: #6b7280;
+
+    --white: #fff;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.top-header {
+
+    height: 62px;
+
+    background: var(--white);
+
+    border-bottom:
+        1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+        0 18px;
+
+    position: relative;
+
+    z-index: 50;
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.brand-main {
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    color: var(--blue);
+}
+
+
+.brand-sub {
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+
+.header-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+.timer-box {
+
+    min-width: 92px;
+
+    padding:
+        8px 12px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 6px;
+
+    background: #f8f9fa;
+
+    text-align: center;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    font-variant-numeric: tabular-nums;
+}
+
+
+.timer-box.warning {
+
+    color: var(--red);
+
+    border-color: #e7a3aa;
+
+    background: var(--red-light);
+}
+
+
+.submit-top {
+
+    border: none;
+
+    background: var(--blue);
+
+    color: white;
+
+    padding:
+        10px 18px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.submit-top:hover {
+
+    background: var(--blue-dark);
+}
+
+
+/* =========================================================
+   PART TABS
+========================================================= */
+
+.part-tabs {
+
+    height: 52px;
+
+    background: white;
+
+    border-bottom:
+        1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding:
+        0 18px;
+
+    position: relative;
+
+    z-index: 40;
+}
+
+
+.part-tab {
+
+    border:
+        1px solid var(--border);
+
+    background: white;
+
+    color: #444;
+
+    padding:
+        8px 16px;
+
+    border-radius: 6px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    font-size: 13px;
+}
+
+
+.part-tab:hover {
+
+    border-color: var(--blue-border);
+}
+
+
+.part-tab.active {
+
+    background: var(--blue);
+
+    border-color: var(--blue);
+
+    color: white;
+}
+
+
+/* =========================================================
+   MAIN SPLIT SCREEN
+========================================================= */
+
+.main {
+
+    height:
+        calc(100vh - 166px);
+
+    display: flex;
+
+    min-width: 0;
+}
+
+
+.panel {
+
+    min-width: 250px;
+
+    overflow-y: auto;
+
+    scroll-behavior: smooth;
+}
+
+
+.passage-panel {
+
+    width: 50%;
+
+    background: white;
+
+    border-right:
+        1px solid var(--border);
+}
+
+
+.question-panel {
+
+    width: 50%;
+
+    background: #f8f9fa;
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.divider {
+
+    width: 6px;
+
+    flex-shrink: 0;
+
+    background: #e0e3e7;
+
+    cursor: col-resize;
+
+    position: relative;
+
+    z-index: 20;
+}
+
+
+.divider:hover {
+
+    background: #aeb6bf;
+}
+
+
+.divider::after {
+
+    content: "⋮";
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    color: #7d858d;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   PASSAGE AREA
+========================================================= */
+
+.passage-content {
+
+    max-width: 950px;
+
+    margin: 0 auto;
+
+    padding:
+        28px 34px 90px;
+}
+
+
+.passage-label {
+
+    color: var(--blue);
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: .7px;
+
+    margin-bottom: 8px;
+}
+
+
+.passage-title {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 25px;
+
+    line-height: 1.35;
+
+    margin:
+        0 0 10px;
+}
+
+
+.passage-info {
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    margin-bottom: 25px;
+
+    padding-bottom: 15px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+
+.passage-text {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 16px;
+
+    line-height: 1.78;
+}
+
+
+.passage-text p {
+
+    margin:
+        0 0 20px;
+}
+
+
+.passage-text h3 {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 17px;
+
+    margin-top: 30px;
+}
+
+
+/* =========================================================
+   QUESTION AREA
+========================================================= */
+
+.questions-content {
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding:
+        22px 28px 90px;
+}
+
+
+.instructions {
+
+    background: white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 8px;
+
+    padding:
+        17px 18px;
+
+    margin-bottom: 20px;
+}
+
+
+.instructions h2 {
+
+    margin:
+        0 0 7px;
+
+    font-size: 20px;
+
+    color: var(--blue);
+}
+
+
+.instructions p {
+
+    margin: 5px 0;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   QUESTION GROUP
+========================================================= */
+
+.question-group {
+
+    margin-bottom: 28px;
+}
+
+
+.group-heading {
+
+    font-size: 18px;
+
+    margin:
+        0 0 7px;
+
+    color: #222;
+}
+
+
+.group-instruction {
+
+    color: #555;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+
+    margin-bottom: 14px;
+}
+
+
+/* =========================================================
+   QUESTION CARD
+========================================================= */
+
+.question-card {
+
+    background: white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 7px;
+
+    padding:
+        16px 17px;
+
+    margin-bottom: 11px;
+
+    scroll-margin-top: 15px;
+}
+
+
+.question-card.answered {
+
+    border-left:
+        4px solid var(--blue);
+}
+
+
+.question-card.correct {
+
+    border-left:
+        4px solid var(--green);
+
+    background:
+        linear-gradient(
+            to right,
+            #f7fffa,
+            white
+        );
+}
+
+
+.question-card.incorrect {
+
+    border-left:
+        4px solid var(--red);
+
+    background:
+        linear-gradient(
+            to right,
+            #fff8f8,
+            white
+        );
+}
+
+
+.question-header {
+
+    display: flex;
+
+    gap: 8px;
+
+    margin-bottom: 12px;
+
+    line-height: 1.5;
+}
+
+
+.question-number {
+
+    color: var(--blue);
+
+    font-weight: 800;
+
+    min-width: 30px;
+}
+
+
+.question-text {
+
+    font-size: 15px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   YES / NO / NG BUTTONS
+========================================================= */
+
+.answer-buttons {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+
+.answer-btn {
+
+    border:
+        1px solid #c9cfd5;
+
+    background: white;
+
+    border-radius: 6px;
+
+    padding:
+        8px 14px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.answer-btn:hover {
+
+    border-color: var(--blue);
+
+    background: var(--blue-light);
+}
+
+
+.answer-btn.selected {
+
+    background: var(--blue);
+
+    border-color: var(--blue);
+
+    color: white;
+}
+
+
+/* =========================================================
+   MULTIPLE CHOICE
+========================================================= */
+
+.choice {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 9px;
+
+    padding:
+        8px 10px;
+
+    margin-bottom: 4px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+
+.choice:hover {
+
+    background: var(--blue-light);
+}
+
+
+.choice input {
+
+    margin-top: 3px;
+}
+
+
+.choice-letter {
+
+    font-weight: 800;
+
+    min-width: 20px;
+
+    color: #444;
+}
+
+
+.choice-text {
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   TEXT INPUT
+========================================================= */
+
+.text-answer {
+
+    width: 100%;
+
+    max-width: 360px;
+
+    border:
+        1px solid #bfc6cd;
+
+    border-radius: 5px;
+
+    padding:
+        9px 10px;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+
+.text-answer:focus {
+
+    border-color: var(--blue);
+
+    box-shadow:
+        0 0 0 2px
+        rgba(31,78,121,.10);
+}
+
+
+/* =========================================================
+   WORD BANK
+========================================================= */
+
+.word-bank {
+
+    background:
+        #f8fafc;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 7px;
+
+    padding:
+        15px;
+
+    margin:
+        14px 0 18px;
+}
+
+
+.word-bank-title {
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    margin-bottom: 10px;
+
+    color: var(--blue);
+}
+
+
+.word-list {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 6px 16px;
+}
+
+
+.word-option {
+
+    font-size: 13px;
+
+    line-height: 1.45;
+}
+
+
+.fill-question {
+
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    line-height: 1.8;
+
+    margin-bottom: 13px;
+
+    font-size: 14px;
+}
+
+
+.fill-number {
+
+    color: var(--blue);
+
+    font-weight: 800;
+}
+
+
+.fill-input {
+
+    border: none;
+
+    border-bottom:
+        2px solid #555;
+
+    background: transparent;
+
+    width: 145px;
+
+    padding:
+        4px 6px;
+
+    outline: none;
+
+    font-size: 14px;
+}
+
+
+.fill-input:focus {
+
+    border-bottom-color:
+        var(--blue);
+}
+
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.summary-box {
+
+    background: white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 8px;
+
+    padding:
+        18px;
+
+    line-height: 2;
+
+    font-size: 15px;
+}
+
+
+.summary-select {
+
+    border:
+        1px solid #bfc6cd;
+
+    background: white;
+
+    border-radius: 5px;
+
+    padding:
+        4px 7px;
+
+    font-size: 14px;
+
+    margin:
+        0 3px;
+}
+
+
+/* =========================================================
+   BOTTOM QUESTION NAVIGATION
+========================================================= */
+
+.bottom-nav {
+
+    position: fixed;
+
+    bottom: 0;
+
+    left: 0;
+
+    right: 0;
+
+    height: 52px;
+
+    background: white;
+
+    border-top:
+        1px solid var(--border);
+
+    z-index: 60;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding:
+        7px 14px;
+
+    overflow-x: auto;
+}
+
+
+.nav-label {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    margin-right: 5px;
+
+    white-space: nowrap;
+}
+
+
+.nav-question {
+
+    min-width: 31px;
+
+    height: 31px;
+
+    border:
+        1px solid #cbd1d7;
+
+    background: white;
+
+    border-radius: 5px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.nav-question:hover {
+
+    border-color: var(--blue);
+}
+
+
+.nav-question.answered {
+
+    background: var(--blue-light);
+
+    border-color: var(--blue);
+
+    color: var(--blue);
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0,0,0,.55);
+
+    z-index: 200;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+}
+
+
+.modal.show {
+
+    display: flex;
+}
+
+
+.modal-window {
+
+    background: white;
+
+    width:
+        min(700px, 100%);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    border-radius: 12px;
+
+    padding: 28px;
+}
+
+
+.modal-window h2 {
+
+    margin:
+        0 0 8px;
+
+    color: var(--blue);
+}
+
+
+.final-score {
+
+    text-align: center;
+
+    font-size: 48px;
+
+    font-weight: 800;
+
+    margin:
+        18px 0 5px;
+
+    color: var(--blue);
+}
+
+
+.score-percent {
+
+    text-align: center;
+
+    color: var(--muted);
+
+    margin-bottom: 20px;
+}
+
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+}
+
+
+.stat {
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 7px;
+
+    padding:
+        14px;
+
+    text-align: center;
+}
+
+
+.stat strong {
+
+    display: block;
+
+    font-size: 22px;
+
+    margin-bottom: 4px;
+}
+
+
+.review {
+
+    margin-top: 25px;
+}
+
+
+.review-item {
+
+    padding:
+        10px 0;
+
+    border-top:
+        1px solid var(--border);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.review-item.correct {
+
+    border-left:
+        4px solid var(--green);
+
+    padding-left: 10px;
+}
+
+
+.review-item.wrong {
+
+    border-left:
+        4px solid var(--red);
+
+    padding-left: 10px;
+}
+
+
+.review-correct {
+
+    color: var(--green);
+
+    font-weight: 700;
+}
+
+
+.review-wrong {
+
+    color: var(--red);
+}
+
+
+.modal-actions {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+
+.modal-actions button {
+
+    border:
+        1px solid var(--border);
+
+    background: white;
+
+    border-radius: 6px;
+
+    padding:
+        9px 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.modal-actions .primary {
+
+    background: var(--blue);
+
+    color: white;
+
+    border-color: var(--blue);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    body {
+
+        overflow: auto;
+    }
+
+
+    .top-header {
+
+        height: auto;
+
+        min-height: 62px;
+
+        padding:
+            9px 12px;
+    }
+
+
+    .brand-sub {
+
+        display: none;
+    }
+
+
+    .header-right {
+
+        gap: 6px;
+    }
+
+
+    .timer-box {
+
+        min-width: 75px;
+
+        font-size: 14px;
+
+        padding:
+            7px;
+    }
+
+
+    .submit-top {
+
+        padding:
+            8px 10px;
+
+        font-size: 12px;
+    }
+
+
+    .part-tabs {
+
+        height: auto;
+
+        padding:
+            8px 10px;
+
+        overflow-x: auto;
+    }
+
+
+    .part-tab {
+
+        white-space: nowrap;
+
+        font-size: 12px;
+    }
+
+
+    .main {
+
+        height: auto;
+
+        display: block;
+    }
+
+
+    .passage-panel,
+    .question-panel {
+
+        width: 100% !important;
+
+        height: auto;
+
+        border: none;
+    }
+
+
+    .divider {
+
+        display: none;
+    }
+
+
+    .passage-content {
+
+        padding:
+            22px 17px;
+    }
+
+
+    .questions-content {
+
+        padding:
+            22px 14px 90px;
+    }
+
+
+    .passage-title {
+
+        font-size: 22px;
+    }
+
+
+    .passage-text {
+
+        font-size: 15px;
+    }
+
+
+    .word-list {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .stats {
+
+        grid-template-columns:
+            1fr;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     TOP HEADER
+====================================================== -->
+
+<header class="top-header">
+
+    <div class="brand">
+
+        <div class="brand-main">
+            IELTS
+        </div>
+
+        <div class="brand-sub">
+            Reading Practice
+        </div>
+
+    </div>
+
+
+    <div class="header-right">
+
+        <div
+            class="timer-box"
+            id="timer">
+
+            40:00
+
+        </div>
+
+
+        <button
+            class="submit-top"
+            onclick="submitTest()">
+
+            Submit Test
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     PART TABS
+====================================================== -->
+
+<div class="part-tabs">
+
+    <button
+        id="part1Tab"
+        class="part-tab active"
+        onclick="switchPart(1)">
+
+        Part 1 · Questions 1–18
+
+    </button>
+
+
+    <button
+        id="part2Tab"
+        class="part-tab"
+        onclick="switchPart(2)">
+
+        Part 2 · Questions 19–32
+
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN SPLIT SCREEN
+====================================================== -->
+
+<main class="main">
+
+
+    <!-- =================================================
+         PASSAGE
+    ================================================== -->
+
+    <section
+        class="panel passage-panel"
+        id="passagePanel">
+
+        <div class="passage-content">
+
+            <div
+                class="passage-label"
+                id="passageLabel">
+
+                Reading Passage 1
+
+            </div>
+
+
+            <h1
+                class="passage-title"
+                id="passageTitle">
+
+                The MIT factor: celebrating 150 years of maverick genius
+
+            </h1>
+
+
+            <div
+                class="passage-info"
+                id="passageInfo">
+
+                Read the passage and answer the questions.
+
+            </div>
+
+
+            <div
+                class="passage-text"
+                id="passageText">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         DRAGGABLE DIVIDER
+    ================================================== -->
+
+    <div
+        class="divider"
+        id="divider">
+    </div>
+
+
+    <!-- =================================================
+         QUESTIONS
+    ================================================== -->
+
+    <section
+        class="panel question-panel"
+        id="questionPanel">
+
+        <div
+            class="questions-content"
+            id="questionsContent">
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     BOTTOM NAVIGATION
+====================================================== -->
+
+<div class="bottom-nav">
+
+    <span class="nav-label">
+        Questions
+    </span>
+
+    <div id="questionNavigation"></div>
+
+</div>
+
+
+<!-- =====================================================
+     RESULT MODAL
+====================================================== -->
+
+<div
+    class="modal"
+    id="resultModal">
+
+    <div class="modal-window">
+
+        <h2>
+            Test Result
+        </h2>
+
+
+        <div
+            class="final-score"
+            id="finalScore">
+
+            0 / 32
+
+        </div>
+
+
+        <div
+            class="score-percent"
+            id="scorePercent">
+
+            0%
+
+        </div>
+
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <strong id="correctNumber">
+                    0
+                </strong>
+
+                Correct
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong id="wrongNumber">
+                    0
+                </strong>
+
+                Incorrect
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong id="unansweredNumber">
+                    0
+                </strong>
+
+                Unanswered
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="review"
+            id="reviewArea">
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                onclick="closeResult()">
+
+                Close
+
+            </button>
+
+
+            <button
+                class="primary"
+                onclick="showReview()">
+
+                Review Answers
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   TEST DATA
+========================================================= */
+
+
+const testData = {
+
+
+/* ========================================================
+   PART 1
+======================================================== */
+
+part1: {
+
+    label:
+        "Reading Passage 1",
+
+    title:
+        "The MIT factor: celebrating 150 years of maverick genius",
+
+    info:
+        "Questions 1–18 · Read the passage and answer the questions.",
+
+
+    passage: `
+
+        <p>
+        The Massachusetts Institute of Technology has led the world into the future for 150 years with scientific innovations.
+        </p>
+
+        <p>
+        The musician Yo-Yo Ma’s cello may not be the obvious starting point for a journey into one of the world’s great universities. But, as you quickly realise when you step inside the Massachusetts Institute of Technology, there’s precious little going on that you would normally see on a university campus. The cello, resting in a corner of MIT’s celebrated media laboratory – a hub of creativity – looks like any other electric classical instrument. But it is much more.
+        </p>
+
+        <p>
+        Machover, the composer, teacher and inventor responsible for its creation, calls it a ‘hyperinstrument’, a sort of thinking machine that allows Ma and his cello to interact with one another and make music together. ‘The aim is to build an instrument worthy of a great musician like Yo-Yo Ma that can understand what he is trying to do and respond to it,’ Machover says. The cello has numerous sensors across its body and by measuring the pressure, speed and angle of the virtuoso’s performance it can interpret his mood and engage with it, producing extraordinary new sounds. The virtuoso cellist frequently performs on the instrument as he tours around the world.
+        </p>
+
+        <p>
+        Machover’s passion for pushing at the boundaries of the existing world to extend and unleash human potential is not a bad description of MIT as a whole. This unusual community brings highly gifted, highly motivated individuals together from a vast range of disciplines, united by a common desire: to leap into the dark and reach for the unknown.
+        </p>
+
+        <p>
+        The result of that single unifying ambition is visible all around. For the past 150 years, MIT has been leading the world into the future. The discoveries of its teachers and students have become the common everyday objects that we now all take for granted. The telephone, electromagnets, radars, high-speed photography, office photocopiers, cancer treatments, pocket calculators, computers, the Internet, the decoding of the human genome, lasers, space travel … the list of innovations that involved essential contributions from MIT and its faculty goes on and on.
+        </p>
+
+        <p>
+        From the moment MIT was founded by William Barton Rogers in 1861, it was clear what it was not. While Harvard stuck to the English model of a classical education, with its emphasis on Latin and Greek, MIT looked to the German system of learning based on research and hands-on experimentation. Knowledge was at a premium, but it had to be useful.
+        </p>
+
+        <p>
+        This down-to-earth quality is enshrined in the school motto, Mens et manus – Mind and hand – as well as its logo, which shows a gowned scholar standing beside an ironmonger bearing a hammer and anvil. That symbiosis of intellect and craftsmanship still suffuses the institute’s classrooms, where students are not so much taught as engaged and inspired.
+        </p>
+
+        <p>
+        Take Christopher Merrill, 21, a third-year undergraduate in computer science. He is spending most of his time on a competition set in his robotics class. The contest is to see which student can most effectively program a robot to build a house out of blocks in under ten minutes.
+        </p>
+
+        <p>
+        Merrill says he could have gone for the easiest route – designing a simple robot that would build the house quickly. But he wanted to try to master an area of robotics that remains unconquered – adaptability, the ability of the robot to rethink its plans as the environment around it changes, as would a human.
+        </p>
+
+        <p>
+        ‘I like to take on things that have never been done before rather than to work in an iterative way just making small steps forward,’ he explains.
+        </p>
+
+        <p>
+        Merrill is already planning the start-up he wants to set up when he graduates in a year’s time. He has an idea for an original version of a contact lens that would augment reality by allowing consumers to see additional visual information. He is fearful that he might be just too late in taking his concept to market, as he has heard that a Silicon Valley firm is already developing something similar.
+        </p>
+
+        <p>
+        As such, he might become one of many MIT graduates who go on to form companies that fail. Alternatively, he might become one of those who go on to succeed in spectacular fashion. And there are many of them.
+        </p>
+
+        <p>
+        A survey of living MIT alumni found that they have formed 25,800 companies, employing more than three million people, including about a quarter of the workforce of Silicon Valley.
+        </p>
+
+        <p>
+        What MIT delights in is taking brilliant minds from around the world in vastly diverse disciplines and putting them together. You can see that in its sparkling new David Koch Institute for Integrative Cancer Research, which brings scientists, engineers and clinicians under one roof.
+        </p>
+
+        <p>
+        Or in its Energy Initiative, which acts as a bridge for MIT’s combined work across all its five schools, channelling huge resources into the search for a solution to global warming. It works to improve the efficiency of existing energy sources, including nuclear power.
+        </p>
+
+        <p>
+        It is also forging ahead with alternative energies from solar to wind and geothermal, and has recently developed the use of viruses to synthesise batteries that could prove crucial in the advancement of electric cars.
+        </p>
+
+        <p>
+        In the words of Tim Berners-Lee, the Briton who invented the World Wide Web, ‘It’s not just another university. Even though I spend my time with my head buried in the details of web technology, the nice thing is that when I do walk the corridors, I bump into people who are working in other fields with their students that are fascinating, and that keeps me intellectually alive.’
+        </p>
+
+        <p>
+        <em>Adapted from the Guardian.</em>
+        </p>
+
+    `,
+
+
+    questions: [
+
+        /* =================================================
+           1–5 TRUE / FALSE / NOT GIVEN
+        ================================================= */
+
+        {
+            number: 1,
+            type: "tfng",
+            text:
+                "The activities going on at the MIT campus are like those at any other university.",
+            options:
+                ["TRUE", "FALSE", "NOT GIVEN"],
+            answer:
+                "FALSE"
+        },
+
+
+        {
+            number: 2,
+            type: "tfng",
+            text:
+                "Harvard and MIT shared a similar approach to education when they were founded.",
+            options:
+                ["TRUE", "FALSE", "NOT GIVEN"],
+            answer:
+                "FALSE"
+        },
+
+
+        {
+            number: 3,
+            type: "tfng",
+            text:
+                "The school motto was suggested by a former MIT student.",
+            options:
+                ["TRUE", "FALSE", "NOT GIVEN"],
+            answer:
+                "NOT GIVEN"
+        },
+
+
+        {
+            number: 4,
+            type: "tfng",
+            text:
+                "MIT’s logo reflects the belief that intellect and craftsmanship go together.",
+            options:
+                ["TRUE", "FALSE", "NOT GIVEN"],
+            answer:
+                "TRUE"
+        },
+
+
+        {
+            number: 5,
+            type: "tfng",
+            text:
+                "Silicon Valley companies pay higher salaries to graduates from MIT.",
+            options:
+                ["TRUE", "FALSE", "NOT GIVEN"],
+            answer:
+                "NOT GIVEN"
+        },
+
+
+        /* =================================================
+           6–9 FILL IN THE BLANK
+        ================================================= */
+
+        {
+            number: 6,
+            type: "text",
+            text:
+                "Christopher Merrill’s degree subject is",
+            suffix:
+                ".",
+            answer:
+                "computer science",
+            acceptable:
+                [
+                    "computer science"
+                ]
+        },
+
+
+        {
+            number: 7,
+            type: "text",
+            text:
+                "The competition is to",
+            suffix:
+                "the automated construction of a house.",
+            answer:
+                "program a robot to build",
+            acceptable:
+                [
+                    "program a robot to build",
+                    "program a robot"
+                ]
+        },
+
+
+        {
+            number: 8,
+            type: "text",
+            text:
+                "Merrill wants to specialise in the",
+            suffix:
+                "of robots.",
+            answer:
+                "adaptability",
+            acceptable:
+                [
+                    "adaptability"
+                ]
+        },
+
+
+        {
+            number: 9,
+            type: "text",
+            text:
+                "His future plan involves developing a new type of",
+            suffix:
+                ".",
+            answer:
+                "contact lens",
+            acceptable:
+                [
+                    "contact lens"
+                ]
+        },
+
+
+        /* =================================================
+           10–18
+           WORD BANK + MCQ
+        ================================================= */
+
+        {
+            number: 10,
+            type: "wordbank",
+            text:
+                "MIT's motto is Mens et manus, meaning",
+            answer:
+                "Mind and hand",
+            wordBank:
+                [
+                    "Mind and hand",
+                    "Research and science",
+                    "Human potential",
+                    "Latin and Greek",
+                    "Science and society",
+                    "Learning and teaching",
+                    "Research and experiment",
+                    "Technology and business",
+                    "Body and brain",
+                    "Knowledge and power",
+                    "Theory and practice",
+                    "Innovation and industry"
+                ]
+        },
+
+
+        {
+            number: 11,
+            type: "wordbank",
+            text:
+                "Merrill wanted to work on an area of robotics that remained",
+            answer:
+                "unconquered",
+            wordBank:
+                [
+                    "unconquered",
+                    "traditional",
+                    "expensive",
+                    "unnecessary",
+                    "unpopular",
+                    "dangerous",
+                    "unavailable",
+                    "simple",
+                    "automated",
+                    "commercial",
+                    "experimental",
+                    "competitive"
+                ]
+        },
+
+
+        {
+            number: 12,
+            type: "wordbank",
+            text:
+                "The robot Merrill wanted to create should be able to rethink its plans when the",
+            answer:
+                "environment",
+            wordBank:
+                [
+                    "environment",
+                    "software",
+                    "operator",
+                    "machine",
+                    "classroom",
+                    "competition",
+                    "market",
+                    "company",
+                    "program",
+                    "industry",
+                    "university",
+                    "technology"
+                ]
+        },
+
+
+        {
+            number: 13,
+            type: "mcq",
+            text:
+                "What does Merrill want to do after graduating?",
+            options:
+                [
+                    "Work for Harvard University.",
+                    "Set up a start-up.",
+                    "Become a teacher.",
+                    "Move to Germany."
+                ],
+            answer:
+                "B"
+        },
+
+
+        {
+            number: 14,
+            type: "mcq",
+            text:
+                "Why is Merrill worried about his contact lens idea?",
+            options:
+                [
+                    "He does not have enough money to develop it.",
+                    "He thinks the technology is too difficult.",
+                    "Another company may already be developing something similar.",
+                    "His university does not support the project."
+                ],
+            answer:
+                "C"
+        },
+
+
+        {
+            number: 15,
+            type: "mcq",
+            text:
+                "How many companies have MIT alumni formed according to the survey?",
+            options:
+                [
+                    "2,580",
+                    "25,800",
+                    "258,000",
+                    "2,580,000"
+                ],
+            answer:
+                "B"
+        },
+
+
+        {
+            number: 16,
+            type: "mcq",
+            text:
+                "What does the David Koch Institute for Integrative Cancer Research bring together?",
+            options:
+                [
+                    "Students and university administrators.",
+                    "Business leaders and investors.",
+                    "Scientists, engineers and clinicians.",
+                    "Musicians, artists and composers."
+                ],
+            answer:
+                "C"
+        },
+
+
+        {
+            number: 17,
+            type: "mcq",
+            text:
+                "What is one aim of MIT's Energy Initiative?",
+            options:
+                [
+                    "To reduce the number of MIT schools.",
+                    "To search for solutions to global warming.",
+                    "To replace all university laboratories.",
+                    "To train professional musicians."
+                ],
+            answer:
+                "B"
+        },
+
+
+        {
+            number: 18,
+            type: "mcq",
+            text:
+                "According to Tim Berners-Lee, what keeps him intellectually alive at MIT?",
+            options:
+                [
+                    "Working alone on web technology.",
+                    "Meeting people working in fascinating other fields.",
+                    "Teaching Latin and Greek.",
+                    "Working only with computer scientists."
+                ],
+            answer:
+                "B"
+        }
+
+    ]
+
+},
+
+
+/* ========================================================
+   PART 2
+======================================================== */
+
+part2: {
+
+    label:
+        "Reading Passage 2",
+
+    title:
+        "A review of Shane O’Mara’s book, In Praise of Walking",
+
+    info:
+        "Questions 19–32 · The new science of how we walk and why it’s good for us.",
+
+
+    passage: `
+
+        <p>
+        Shane O'Mara, a professor of experimental brain research at Trinity College, Dublin, considers walking to be an essential mental practice. Engaging in this activity is not only a source of joy for him but also a necessity, providing him with the freedom to contemplate and find solutions to problems.
+        </p>
+
+        <p>
+        O’Mara seems in his element striding through urban landscapes; he firmly believes that walking is not merely a way of getting from A to B, but it activates the brain. To wit, in In Praise of Walking he provides the example of the sea squirt, a marine invertebrate that, in its mature state, eats its own brain. In the early stages of its development, the sea squirt has a backbone, one eye, and a rudimentary brain that facilitates swimming and hunting. In its larval phase the sea squirt shows awareness of directional movement. However, once attached to a rock, it consumes its eye, brain, and spinal cord – these are all redundant now that the sea squirt has come to a standstill.
+        </p>
+
+        <p>
+        When sitting all day in front of computer, many would agree, it is easy to relate to the brainless sea squirt, whereas getting out for a walk, admiring the scenery along the way or drifting into reverie, one can feel the mind becoming activated. Citing a 2018 study spanning two decades, O’Mara notes that individuals who undertook minimal physical activity displayed unfavourable shifts in their personality traits, scoring lower in positive aspects such as openness and agreeableness. This is consistent with common wisdom. Furthermore, evidence indicates that individuals who engage in walking exhibit reduced rates of depression.
+        </p>
+
+        <p>
+        Much of what O’Mara covers is fairly unsurprising, but he dies make some interesting points that at first seemed counter intuitive. For example, one would think the increased use of GPS (Global Positioning System), navigation technology, is weakening people’s natural capacity to find their way around. Surely, we’ve come to rely less on any in-built sense of direction we may have. However, according to O’Mara, that is simply not the case. He explains that when making one’s way through a city for the first time, the reliance on GPS will probably be significant. Initially, it is a crucial tool for guidance but with subsequent trips, the dependence diminishes, the GPS becomes unnecessary, and the route is learned. He believes that GPS is helpful and there is no data to show it is having a negative effect on our ability to find our way.
+        </p>
+
+        <p>
+        O'Mara says that the human cognitive mapping system, or ‘inbuilt GPS’ is a silent sense. It is predominantly formed without us being aware of it and is apparent to us only when it malfunctions. He goes on to explain that while the inner ear's vestibular system manages balance, our mental mapping relies on cells in our hippocampus, a complex part of the brain deep in the temporal lobe. Interestingly – and this is where walking comes in - experiments with rats revealed that their mapping system was less effective when they were wheeled around compared to when they were walking.
+        </p>
+
+        <p>
+        According to O’Mara, as well as the mental mapping that takes place while we humans are walking, our ‘social brains’ are also working to anticipate which direction other people will take, to avoid collision. He says that while we are walking, our brains flicker between big-picture thoughts like plans for the future on the one hand and the focused work of walking down the street on the other. Moving between these two states is necessary in order to do creative work, and many interesting associations are made by the brain. This is why many people report that they think better during a walk.
+        </p>
+
+        <p>
+        The physical benefits of walking should also not be overlooked; O’Mara points to a study from 2011, in which researchers observed a 62-year-old man walking length of the Alps, a huge mountain range in Europe. The man trekked over three months, followed every step of the way by scientists who measured every aspect of his physiology. This man of average fitness, who had hardly gone on a long walk in his life, was able to complete the walk. However, the real surprise was just how profound the consequences were. He had a 75 per cent drop in triglycerides, fats associated with heart disease. He also saw an increase in the fats linked to protection of the heart. O’Mara writes that while in the short term the man would doubtless be grumpy about being cold or tired, his long-term sense of wellbeing would have improved, perhaps enduringly so.
+        </p>
+
+        <p>
+        A 2017 study mentioned by O’Mara had participants do the reverse of the Alps experiment: they spent three days lying on waterbeds. After three days of lying in a relaxed state doing nothing, they underwent a series of tests and it was found that their legs had already started to atrophy, with diminished flexibility. Furthermore, it is evident that these physiological shifts corresponded to neurological changes, leading to a decrease in mental sharpness.
+        </p>
+
+        <p>
+        Unfortunately, many people simply do not count walking as proper exercise. O'Mara dismisses this, arguing – compellingly - that relying solely on an hour at the gym is not sufficient. He notes that when individuals use activity monitors at the gym, it is evident that intense exercise leads to a subsequent reduction in overall activity levels. With walking, the reverse is true; people tend to build up the time spent as they see positive changes. If O’Mara’s book finds a readership in those who need to be convinced to put one foot in front of the other on a regular basis, then it has done a service to those readers.
+        </p>
+
+    `,
+
+
+    questions: [
+
+        /* =================================================
+           19–24 YES / NO / NOT GIVEN
+        ================================================= */
+
+        {
+            number: 19,
+            type: "ynng",
+            text:
+                "O’Mara appears to be comfortable walking in the city.",
+            options:
+                ["YES", "NO", "NOT GIVEN"],
+            answer:
+                "YES"
+        },
+
+
+        {
+            number: 20,
+            type: "ynng",
+            text:
+                "When walking, less effort is required if there are interesting sights along the way.",
+            options:
+                ["YES", "NO", "NOT GIVEN"],
+            answer:
+                "NOT GIVEN"
+        },
+
+
+        {
+            number: 21,
+            type: "ynng",
+            text:
+                "Most people are unaware that moving very little makes people less agreeable over time.",
+            options:
+                ["YES", "NO", "NOT GIVEN"],
+            answer:
+                "NOT GIVEN"
+        },
+
+
+        {
+            number: 22,
+            type: "ynng",
+            text:
+                "The scientists who conducted research in the Alps benefitted physically from participating.",
+            options:
+                ["YES", "NO", "NOT GIVEN"],
+            answer:
+                "NOT GIVEN"
+        },
+
+
+        {
+            number: 23,
+            type: "ynng",
+            text:
+                "Taking part in the waterbed experiment likely affected the participants’ mental capacity.",
+            options:
+                ["YES", "NO", "NOT GIVEN"],
+            answer:
+                "YES"
+        },
+
+
+        {
+            number: 24,
+            type: "ynng",
+            text:
+                "Walking is less beneficial than very intense forms of exercise.",
+            options:
+                ["YES", "NO", "NOT GIVEN"],
+            answer:
+                "NO"
+        },
+
+
+        /* =================================================
+           25–28 MULTIPLE CHOICE
+        ================================================= */
+
+        {
+            number: 25,
+            type: "mcq",
+            text:
+                "The example of the sea squirt is mentioned to show that",
+            options:
+                [
+                    "the brain is not the only way that a creature has of navigating the ocean.",
+                    "once a creature stops moving, it does not need a brain.",
+                    "when food is available, the brain knows movement is unnecessary.",
+                    "even creatures with simple brain structures must move to survive."
+                ],
+            answer:
+                "B"
+        },
+
+
+        {
+            number: 26,
+            type: "mcq",
+            text:
+                "What does O’Mara say about GPS technology?",
+            options:
+                [
+                    "People have become too dependent on this.",
+                    "It can be confusing to use this in a new place.",
+                    "This serves as a way of training the brain.",
+                    "This is especially useful for a particular type of person."
+                ],
+            answer:
+                "C"
+        },
+
+
+        {
+            number: 27,
+            type: "mcq",
+            text:
+                "What does the reviewer say about the study involving the man who walked the length of the Alps?",
+            options:
+                [
+                    "The man found the last part of the walk to be the most satisfying.",
+                    "The man was a more experienced walker than most people of his age.",
+                    "The dramatic changes observed in the man’s health were unexpected.",
+                    "The positive feeling the man had while walking would wear off in time."
+                ],
+            answer:
+                "C"
+        },
+
+
+        {
+            number: 28,
+            type: "mcq",
+            text:
+                "What is the writer doing in the final paragraph?",
+            options:
+                [
+                    "Promoting a vigorous style of walking",
+                    "Explaining why people lose interest in exercise.",
+                    "Questioning O’Mara’s opinion about going to the gym.",
+                    "Expressing a hope that readers of O’Mara’s book will walk more."
+                ],
+            answer:
+                "D"
+        },
+
+
+        /* =================================================
+           29–32 SUMMARY COMPLETION
+        ================================================= */
+
+        {
+            number: 29,
+            type: "summary",
+            text:
+                "Complete the summary below. Choose the correct letter, A–H.",
+
+            answer:
+                "B"
+        },
+
+
+        {
+            number: 30,
+            type: "summary",
+            text:
+                "Complete the summary below. Choose the correct letter, A–H.",
+
+            answer:
+                "C"
+        },
+
+
+        {
+            number: 31,
+            type: "summary",
+            text:
+                "Complete the summary below. Choose the correct letter, A–H.",
+
+            answer:
+                "H"
+        },
+
+
+        {
+            number: 32,
+            type: "summary",
+            text:
+                "Complete the summary below. Choose the correct letter, A–H.",
+
+            answer:
+                "G"
+        }
+
+    ]
+
+}
+
+};
+
+
+/* =========================================================
+   APPLICATION STATE
+========================================================= */
+
+let currentPart = 1;
+
+let userAnswers = {};
+
+let timeRemaining = 40 * 60;
+
+let timerInterval = null;
+
+let submitted = false;
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadPart(1);
+
+        createNavigation();
+
+        startTimer();
+
+        setupDivider();
+
+    }
+);
+
+
+/* =========================================================
+   ALL QUESTIONS
+========================================================= */
+
+function getAllQuestions() {
+
+    return [
+        ...testData.part1.questions,
+        ...testData.part2.questions
+    ];
+
+}
+
+
+/* =========================================================
+   SWITCH PART
+========================================================= */
+
+function switchPart(part) {
+
+    currentPart = part;
+
+
+    document
+        .getElementById("part1Tab")
+        .classList
+        .toggle(
+            "active",
+            part === 1
+        );
+
+
+    document
+        .getElementById("part2Tab")
+        .classList
+        .toggle(
+            "active",
+            part === 2
+        );
+
+
+    loadPart(part);
+
+}
+
+
+/* =========================================================
+   LOAD PART
+========================================================= */
+
+function loadPart(part) {
+
+    const data =
+        part === 1
+            ? testData.part1
+            : testData.part2;
+
+
+    document
+        .getElementById("passageLabel")
+        .textContent =
+        data.label;
+
+
+    document
+        .getElementById("passageTitle")
+        .textContent =
+        data.title;
+
+
+    document
+        .getElementById("passageInfo")
+        .textContent =
+        data.info;
+
+
+    document
+        .getElementById("passageText")
+        .innerHTML =
+        data.passage;
+
+
+    renderQuestions(
+        data.questions
+    );
+
+
+    document
+        .getElementById("passagePanel")
+        .scrollTop = 0;
+
+
+    document
+        .getElementById("questionPanel")
+        .scrollTop = 0;
+
+}
+
+
+/* =========================================================
+   RENDER QUESTIONS
+========================================================= */
+
+function renderQuestions(questions) {
+
+    const container =
+        document.getElementById(
+            "questionsContent"
+        );
+
+
+    container.innerHTML = "";
+
+
+    const first =
+        questions[0].number;
+
+
+    const last =
+        questions[
+            questions.length - 1
+        ].number;
+
+
+    container.innerHTML += `
+
+        <div class="instructions">
+
+            <h2>
+                Questions ${first}–${last}
+            </h2>
+
+            <p>
+                Read each question carefully and
+                select or enter your answer.
+            </p>
+
+        </div>
+
+    `;
+
+
+    /* -----------------------------------------
+       PART 1
+    ----------------------------------------- */
+
+    if (currentPart === 1) {
+
+        renderPart1Questions(
+            container,
+            questions
+        );
+
+    }
+
+
+    /* -----------------------------------------
+       PART 2
+    ----------------------------------------- */
+
+    else {
+
+        renderPart2Questions(
+            container,
+            questions
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   PART 1 QUESTIONS
+========================================================= */
+
+function renderPart1Questions(
+    container,
+    questions
+) {
+
+
+    /* -----------------------------------------
+       Q1–5
+    ----------------------------------------- */
+
+    const group1 =
+        document.createElement("div");
+
+    group1.className =
+        "question-group";
+
+
+    group1.innerHTML = `
+
+        <h3 class="group-heading">
+            Questions 1–5
+        </h3>
+
+        <div class="group-instruction">
+
+            Do the following statements agree
+            with the information in the reading passage?
+
+            <br><br>
+
+            <strong>TRUE</strong>
+            if the statement agrees with the information.
+
+            <br>
+
+            <strong>FALSE</strong>
+            if the statement contradicts the information.
+
+            <br>
+
+            <strong>NOT GIVEN</strong>
+            if there is no information on this.
+
+        </div>
+
+    `;
+
+
+    questions
+        .filter(q => q.number >= 1 && q.number <= 5)
+        .forEach(q => {
+
+            group1.appendChild(
+                createQuestionCard(q)
+            );
+
+        });
+
+
+    container.appendChild(group1);
+
+
+    /* -----------------------------------------
+       Q6–9
+    ----------------------------------------- */
+
+    const group2 =
+        document.createElement("div");
+
+    group2.className =
+        "question-group";
+
+
+    group2.innerHTML = `
+
+        <h3 class="group-heading">
+            Questions 6–9
+        </h3>
+
+        <div class="group-instruction">
+
+            Complete the notes below.
+
+            <br>
+
+            Choose <strong>NO MORE THAN TWO WORDS</strong>
+            from the passage for each answer.
+
+        </div>
+
+    `;
+
+
+    questions
+        .filter(q => q.number >= 6 && q.number <= 9)
+        .forEach(q => {
+
+            group2.appendChild(
+                createQuestionCard(q)
+            );
+
+        });
+
+
+    container.appendChild(group2);
+
+
+    /* -----------------------------------------
+       Q10–18
+    ----------------------------------------- */
+
+    const group3 =
+        document.createElement("div");
+
+    group3.className =
+        "question-group";
+
+
+    group3.innerHTML = `
+
+        <h3 class="group-heading">
+            Questions 10–18
+        </h3>
+
+        <div class="group-instruction">
+
+            Questions 10–12 use the word box.
+            Choose the correct word or phrase.
+
+            <br><br>
+
+            Questions 13–18:
+            Choose the correct letter,
+            A, B, C or D.
+
+        </div>
+
+    `;
+
+
+    questions
+        .filter(q => q.number >= 10 && q.number <= 18)
+        .forEach(q => {
+
+            group3.appendChild(
+                createQuestionCard(q)
+            );
+
+        });
+
+
+    container.appendChild(group3);
+
+}
+
+
+/* =========================================================
+   PART 2 QUESTIONS
+========================================================= */
+
+function renderPart2Questions(
+    container,
+    questions
+) {
+
+
+    /* -----------------------------------------
+       Q19–24
+    ----------------------------------------- */
+
+    const group1 =
+        document.createElement("div");
+
+    group1.className =
+        "question-group";
+
+
+    group1.innerHTML = `
+
+        <h3 class="group-heading">
+            Questions 19–24
+        </h3>
+
+        <div class="group-instruction">
+
+            Do the following statements agree
+            with the claims of the writer?
+
+            <br><br>
+
+            <strong>YES</strong>
+            if the statement agrees with the views of the writer.
+
+            <br>
+
+            <strong>NO</strong>
+            if the statement contradicts the views of the writer.
+
+            <br>
+
+            <strong>NOT GIVEN</strong>
+            if it is impossible to say what the writer thinks.
+
+        </div>
+
+    `;
+
+
+    questions
+        .filter(q => q.number >= 19 && q.number <= 24)
+        .forEach(q => {
+
+            group1.appendChild(
+                createQuestionCard(q)
+            );
+
+        });
+
+
+    container.appendChild(group1);
+
+
+    /* -----------------------------------------
+       Q25–28
+    ----------------------------------------- */
+
+    const group2 =
+        document.createElement("div");
+
+    group2.className =
+        "question-group";
+
+
+    group2.innerHTML = `
+
+        <h3 class="group-heading">
+            Questions 25–28
+        </h3>
+
+        <div class="group-instruction">
+
+            Choose the correct letter,
+            A, B, C or D.
+
+        </div>
+
+    `;
+
+
+    questions
+        .filter(q => q.number >= 25 && q.number <= 28)
+        .forEach(q => {
+
+            group2.appendChild(
+                createQuestionCard(q)
+            );
+
+        });
+
+
+    container.appendChild(group2);
+
+
+    /* -----------------------------------------
+       Q29–32
+    ----------------------------------------- */
+
+    const group3 =
+        document.createElement("div");
+
+    group3.className =
+        "question-group";
+
+
+    group3.innerHTML = `
+
+        <h3 class="group-heading">
+            Questions 29–32
+        </h3>
+
+        <div class="group-instruction">
+
+            Complete the summary using the list
+            of words, A–H, below.
+
+            <br>
+
+            Write the correct letter, A–H.
+
+        </div>
+
+
+        <div class="word-bank">
+
+            <div class="word-bank-title">
+                WORD BOX
+            </div>
+
+            <div class="word-list">
+
+                <div class="word-option">
+                    <strong>A</strong> human survival
+                </div>
+
+                <div class="word-option">
+                    <strong>B</strong> obvious failure
+                </div>
+
+                <div class="word-option">
+                    <strong>C</strong> movements of others
+                </div>
+
+                <div class="word-option">
+                    <strong>D</strong> level of communication
+                </div>
+
+                <div class="word-option">
+                    <strong>E</strong> extreme efficiency
+                </div>
+
+                <div class="word-option">
+                    <strong>F</strong> changes in conditions
+                </div>
+
+                <div class="word-option">
+                    <strong>G</strong> innovative thought
+                </div>
+
+                <div class="word-option">
+                    <strong>H</strong> sense of direction
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-box">
+
+            O’Mara explains that the human sense of
+            direction is really only noticeable in the
+            case of its
+
+            ${summarySelect(29)}
+
+            There are many components to navigation.
+            As well as complex functions like balance
+            and positioning ourselves, we have to be able
+            to take in what is happening around us and
+            predict the
+
+            ${summarySelect(30)}
+
+            Studies with rats showed that they had a
+            superior
+
+            ${summarySelect(31)}
+
+            when they were walking, rather than being
+            transported on wheels.
+
+            When walking, humans are able to alternate
+            between thinking about big-picture matters
+            and the immediate task of walking, a skill
+            which is needed for
+
+            ${summarySelect(32)}
+
+        </div>
+
+    `;
+
+
+    container.appendChild(group3);
+
+}
+
+
+/* =========================================================
+   SUMMARY SELECT
+========================================================= */
+
+function summarySelect(number) {
+
+    const current =
+        userAnswers[number] || "";
+
+
+    return `
+
+        <select
+            class="summary-select"
+            onchange="
+                selectAnswer(
+                    ${number},
+                    this.value
+                )
+            ">
+
+            <option value="">
+                ${number}
+            </option>
+
+            <option value="A"
+                ${current === "A" ? "selected" : ""}>
+                A
+            </option>
+
+            <option value="B"
+                ${current === "B" ? "selected" : ""}>
+                B
+            </option>
+
+            <option value="C"
+                ${current === "C" ? "selected" : ""}>
+                C
+            </option>
+
+            <option value="D"
+                ${current === "D" ? "selected" : ""}>
+                D
+            </option>
+
+            <option value="E"
+                ${current === "E" ? "selected" : ""}>
+                E
+            </option>
+
+            <option value="F"
+                ${current === "F" ? "selected" : ""}>
+                F
+            </option>
+
+            <option value="G"
+                ${current === "G" ? "selected" : ""}>
+                G
+            </option>
+
+            <option value="H"
+                ${current === "H" ? "selected" : ""}>
+                H
+            </option>
+
+        </select>
+
+    `;
+
+}
+
+
+/* =========================================================
+   CREATE QUESTION CARD
+========================================================= */
+
+function createQuestionCard(q) {
+
+    const card =
+        document.createElement("div");
+
+
+    card.className =
+        "question-card";
+
+
+    card.id =
+        `question-${q.number}`;
+
+
+    let content = `
+
+        <div class="question-header">
+
+            <div class="question-number">
+                ${q.number}.
+            </div>
+
+            <div class="question-text">
+                ${q.text}
+                ${q.suffix || ""}
+            </div>
+
+        </div>
+
+    `;
+
+
+    /* -----------------------------------------
+       TRUE / FALSE / NOT GIVEN
+    ----------------------------------------- */
+
+    if (
+        q.type === "tfng" ||
+        q.type === "ynng"
+    ) {
+
+        content += `
+
+            <div class="answer-buttons">
+
+                ${q.options.map(
+                    option => `
+
+                    <button
+                        class="answer-btn
+                            ${
+                                userAnswers[q.number] === option
+                                    ? "selected"
+                                    : ""
+                            }"
+
+                        onclick="
+                            selectAnswer(
+                                ${q.number},
+                                '${option}'
+                            )
+                        ">
+
+                        ${option}
+
+                    </button>
+
+                `
+                ).join("")}
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* -----------------------------------------
+       TEXT INPUT
+    ----------------------------------------- */
+
+    else if (q.type === "text") {
+
+        content += `
+
+            <input
+                class="text-answer"
+                type="text"
+                value="${
+                    userAnswers[q.number] || ""
+                }"
+                placeholder="Type your answer"
+                oninput="
+                    selectTextAnswer(
+                        ${q.number},
+                        this.value
+                    )
+                "
+            >
+
+        `;
+
+    }
+
+
+    /* -----------------------------------------
+       WORD BANK
+    ----------------------------------------- */
+
+    else if (q.type === "wordbank") {
+
+        content += `
+
+            <div class="word-bank">
+
+                <div class="word-bank-title">
+                    Choose from the word box
+                </div>
+
+                <div class="word-list">
+
+                    ${q.wordBank.map(
+                        word => `
+
+                        <div class="word-option">
+                            ${word}
+                        </div>
+
+                    `
+                    ).join("")}
+
+                </div>
+
+            </div>
+
+
+            <select
+                class="summary-select"
+                onchange="
+                    selectAnswer(
+                        ${q.number},
+                        this.value
+                    )
+                ">
+
+                <option value="">
+                    Select answer
+                </option>
+
+                ${q.wordBank.map(
+                    word => `
+
+                    <option
+                        value="${word}"
+                        ${
+                            userAnswers[q.number] === word
+                                ? "selected"
+                                : ""
+                        }>
+
+                        ${word}
+
+                    </option>
+
+                `
+                ).join("")}
+
+            </select>
+
+        `;
+
+    }
+
+
+    /* -----------------------------------------
+       MULTIPLE CHOICE
+    ----------------------------------------- */
+
+    else if (q.type === "mcq") {
+
+        content += `
+
+            <div>
+
+                ${q.options.map(
+                    (option, index) => {
+
+                        const letter =
+                            String.fromCharCode(
+                                65 + index
+                            );
+
+                        return `
+
+                            <label
+                                class="choice">
+
+                                <input
+                                    type="radio"
+                                    name="question-${q.number}"
+                                    value="${letter}"
+
+                                    ${
+                                        userAnswers[q.number] === letter
+                                            ? "checked"
+                                            : ""
+                                    }
+
+                                    onchange="
+                                        selectAnswer(
+                                            ${q.number},
+                                            '${letter}'
+                                        )
+                                    "
+                                >
+
+                                <span
+                                    class="choice-letter">
+
+                                    ${letter}
+
+                                </span>
+
+                                <span
+                                    class="choice-text">
+
+                                    ${option}
+
+                                </span>
+
+                            </label>
+
+                        `;
+
+                    }
+                ).join("")}
+
+            </div>
+
+        `;
+
+    }
+
+
+    card.innerHTML =
+        content;
+
+
+    return card;
+
+}
+
+
+/* =========================================================
+   SELECT ANSWER
+========================================================= */
+
+function selectAnswer(
+    number,
+    answer
+) {
+
+    userAnswers[number] =
+        answer;
+
+
+    updateQuestionState(
+        number
+    );
+
+
+    updateNavigation(
+        number
+    );
+
+}
+
+
+/* =========================================================
+   TEXT ANSWER
+========================================================= */
+
+function selectTextAnswer(
+    number,
+    value
+) {
+
+    userAnswers[number] =
+        value.trim();
+
+
+    updateQuestionState(
+        number
+    );
+
+
+    updateNavigation(
+        number
+    );
+
+}
+
+
+/* =========================================================
+   UPDATE QUESTION STATE
+========================================================= */
+
+function updateQuestionState(
+    number
+) {
+
+    const card =
+        document.getElementById(
+            `question-${number}`
+        );
+
+
+    if (!card) return;
+
+
+    if (
+        userAnswers[number] &&
+        String(
+            userAnswers[number]
+        ).trim() !== ""
+    ) {
+
+        card.classList.add(
+            "answered"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function createNavigation() {
+
+    const nav =
+        document.getElementById(
+            "questionNavigation"
+        );
+
+
+    nav.innerHTML = "";
+
+
+    for (
+        let number = 1;
+        number <= 32;
+        number++
+    ) {
+
+        const button =
+            document.createElement(
+                "button"
+            );
+
+
+        button.className =
+            "nav-question";
+
+
+        button.id =
+            `nav-${number}`;
+
+
+        button.textContent =
+            number;
+
+
+        button.onclick =
+            function() {
+
+                const question =
+                    document.getElementById(
+                        `question-${number}`
+                    );
+
+
+                if (!question) {
+
+                    const part =
+                        number <= 18
+                            ? 1
+                            : 2;
+
+                    switchPart(part);
+
+                }
+
+
+                setTimeout(
+                    function() {
+
+                        const target =
+                            document.getElementById(
+                                `question-${number}`
+                            );
+
+                        if (target) {
+
+                            target.scrollIntoView({
+                                behavior:
+                                    "smooth",
+                                block:
+                                    "center"
+                            });
+
+                        }
+
+                    },
+                    100
+                );
+
+            };
+
+
+        nav.appendChild(
+            button
+        );
+
+    }
+
+}
+
+
+function updateNavigation(
+    number
+) {
+
+    const button =
+        document.getElementById(
+            `nav-${number}`
+        );
+
+
+    if (!button) return;
+
+
+    if (
+        userAnswers[number] &&
+        String(
+            userAnswers[number]
+        ).trim() !== ""
+    ) {
+
+        button.classList.add(
+            "answered"
+        );
+
+    } else {
+
+        button.classList.remove(
+            "answered"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+function startTimer() {
+
+    updateTimer();
+
+
+    timerInterval =
+        setInterval(
+            function() {
+
+                if (
+                    timeRemaining <= 0
+                ) {
+
+                    clearInterval(
+                        timerInterval
+                    );
+
+
+                    if (!submitted) {
+
+                        submitTest(
+                            true
+                        );
+
+                    }
+
+                    return;
+
+                }
+
+
+                timeRemaining--;
+
+
+                updateTimer();
+
+            },
+            1000
+        );
+
+}
+
+
+function updateTimer() {
+
+    const minutes =
+        Math.floor(
+            timeRemaining / 60
+        );
+
+
+    const seconds =
+        timeRemaining % 60;
+
+
+    const timer =
+        document.getElementById(
+            "timer"
+        );
+
+
+    timer.textContent =
+        `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+
+
+    if (
+        timeRemaining <= 300
+    ) {
+
+        timer.classList.add(
+            "warning"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   SUBMIT TEST
+========================================================= */
+
+function submitTest(
+    automatic = false
+) {
+
+    if (submitted) return;
+
+
+    if (!automatic) {
+
+        const unanswered =
+            getAllQuestions()
+                .filter(
+                    q =>
+                        !userAnswers[q.number] ||
+                        String(
+                            userAnswers[q.number]
+                        ).trim() === ""
+                );
+
+
+        if (
+            unanswered.length > 0
+        ) {
+
+            const proceed =
+                confirm(
+                    `You still have ${unanswered.length} unanswered question(s). Submit anyway?`
+                );
+
+
+            if (!proceed) {
+
+                return;
+
+            }
+
+        }
+
+    }
+
+
+    submitted = true;
+
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    calculateResult();
+
+}
+
+
+/* =========================================================
+   NORMALIZE TEXT
+========================================================= */
+
+function normalize(
+    text
+) {
+
+    return String(text)
+        .toLowerCase()
+        .trim()
+        .replace(
+            /[.,!?;:]/g,
+            ""
+        )
+        .replace(
+            /\s+/g,
+            " "
+        );
+
+}
+
+
+/* =========================================================
+   CHECK ANSWER
+========================================================= */
+
+function isCorrect(
+    question
+) {
+
+    const user =
+        userAnswers[
+            question.number
+        ];
+
+
+    if (
+        !user ||
+        String(user).trim() === ""
+    ) {
+
+        return false;
+
+    }
+
+
+    if (
+        question.type === "text"
+    ) {
+
+        const normalizedUser =
+            normalize(user);
+
+
+        return question.acceptable.some(
+            answer =>
+                normalize(answer) ===
+                normalizedUser
+        );
+
+    }
+
+
+    return (
+        normalize(user) ===
+        normalize(question.answer)
+    );
+
+}
+
+
+/* =========================================================
+   CALCULATE RESULT
+========================================================= */
+
+function calculateResult() {
+
+    const questions =
+        getAllQuestions();
+
+
+    let correct = 0;
+
+    let wrong = 0;
+
+    let unanswered = 0;
+
+
+    questions.forEach(
+        question => {
+
+            const user =
+                userAnswers[
+                    question.number
+                ];
+
+
+            if (
+                !user ||
+                String(user).trim() === ""
+            ) {
+
+                unanswered++;
+
+            }
+
+            else if (
+                isCorrect(question)
+            ) {
+
+                correct++;
+
+            }
+
+            else {
+
+                wrong++;
+
+            }
+
+        }
+    );
+
+
+    const total =
+        questions.length;
+
+
+    const percentage =
+        Math.round(
+            (correct / total) * 100
+        );
+
+
+    document
+        .getElementById(
+            "finalScore"
+        )
+        .textContent =
+        `${correct} / ${total}`;
+
+
+    document
+        .getElementById(
+            "scorePercent"
+        )
+        .textContent =
+        `${percentage}%`;
+
+
+    document
+        .getElementById(
+            "correctNumber"
+        )
+        .textContent =
+        correct;
+
+
+    document
+        .getElementById(
+            "wrongNumber"
+        )
+        .textContent =
+        wrong;
+
+
+    document
+        .getElementById(
+            "unansweredNumber"
+        )
+        .textContent =
+        unanswered;
+
+
+    markQuestions();
+
+
+    document
+        .getElementById(
+            "resultModal"
+        )
+        .classList
+        .add("show");
+
+}
+
+
+/* =========================================================
+   MARK QUESTIONS
+========================================================= */
+
+function markQuestions() {
+
+    getAllQuestions().forEach(
+        question => {
+
+            const card =
+                document.getElementById(
+                    `question-${question.number}`
+                );
+
+
+            if (!card) return;
+
+
+            card.classList.remove(
+                "correct",
+                "incorrect"
+            );
+
+
+            const user =
+                userAnswers[
+                    question.number
+                ];
+
+
+            if (
+                !user ||
+                String(user).trim() === ""
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                isCorrect(question)
+            ) {
+
+                card.classList.add(
+                    "correct"
+                );
+
+            }
+
+            else {
+
+                card.classList.add(
+                    "incorrect"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   REVIEW ANSWERS
+========================================================= */
+
+function showReview() {
+
+    const review =
+        document.getElementById(
+            "reviewArea"
+        );
+
+
+    review.innerHTML = `
+
+        <h3>
+            Answer Review
+        </h3>
+
+    `;
+
+
+    getAllQuestions().forEach(
+        question => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            const user =
+                userAnswers[
+                    question.number
+                ] ||
+                "Not answered";
+
+
+            const correct =
+                question.answer;
+
+
+            const correctState =
+                isCorrect(question);
+
+
+            item.className =
+                "review-item " +
+                (
+                    correctState
+                        ? "correct"
+                        : "wrong"
+                );
+
+
+            item.innerHTML = `
+
+                <strong>
+                    Question ${question.number}
+                </strong>
+
+                <br>
+
+                Your answer:
+                <span class="${
+                    correctState
+                        ? "review-correct"
+                        : "review-wrong"
+                }">
+
+                    ${user}
+
+                </span>
+
+                <br>
+
+                Correct answer:
+                <span class="review-correct">
+
+                    ${correct}
+
+                </span>
+
+            `;
+
+
+            review.appendChild(
+                item
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CLOSE RESULT
+========================================================= */
+
+function closeResult() {
+
+    document
+        .getElementById(
+            "resultModal"
+        )
+        .classList
+        .remove("show");
+
+}
+
+
+/* =========================================================
+   DRAGGABLE DIVIDER
+========================================================= */
+
+function setupDivider() {
+
+    const divider =
+        document.getElementById(
+            "divider"
+        );
+
+
+    const passage =
+        document.getElementById(
+            "passagePanel"
+        );
+
+
+    const questions =
+        document.getElementById(
+            "questionPanel"
+        );
+
+
+    let dragging = false;
+
+
+    divider.addEventListener(
+        "mousedown",
+        function() {
+
+            dragging = true;
+
+            document.body.style.cursor =
+                "col-resize";
+
+            document.body.style.userSelect =
+                "none";
+
+        }
+    );
+
+
+    document.addEventListener(
+        "mousemove",
+        function(event) {
+
+            if (!dragging) return;
+
+
+            const percentage =
+                (
+                    event.clientX /
+                    window.innerWidth
+                ) * 100;
+
+
+            if (
+                percentage >= 30 &&
+                percentage <= 70
+            ) {
+
+                passage.style.width =
+                    `${percentage}%`;
+
+
+                questions.style.width =
+                    `${100 - percentage}%`;
+
+            }
+
+        }
+    );
+
+
+    document.addEventListener(
+        "mouseup",
+        function() {
+
+            dragging = false;
+
+            document.body.style.cursor =
+                "";
+
+            document.body.style.userSelect =
+                "";
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   TEXT HIGHLIGHTING
+=========================================================
+
+   The browser's normal text selection is available.
+   Students can select text in the passage.
+
+========================================================= */
+
+
+/* =========================================================
+   BEFORE LEAVING PAGE
+========================================================= */
+
+window.addEventListener(
+    "beforeunload",
+    function(event) {
+
+        if (
+            !submitted
+        ) {
+
+            event.preventDefault();
+
+            event.returnValue = "";
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
